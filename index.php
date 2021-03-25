@@ -9,6 +9,7 @@ $countryName = $update['message']['text'];
 $wikiUrl = 'https://ru.wikipedia.org/wiki/' . $countryName;
 
 $params = [
+    'parse_mode' => 'HTML',
     'chat_id' => $update['message']['chat']['id'],
     'text' => "Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki"
 ];
