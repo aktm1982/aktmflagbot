@@ -10,7 +10,7 @@ $wikiUrl = 'https://ru.wikipedia.org/wiki/' . $countryName;
 
 $page = file_get_contents($wikiUrl);
 
-if (strpos("государство", $page)) {
+if (strpos("Государства", $page)) {
     $text = "Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
 } else {
     $text = "Попробуйте ввести название страны :))";
