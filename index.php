@@ -6,12 +6,15 @@ const BASE_URL = 'https://api.telegram.org/bot' . TOKEN;
 $update = json_decode(file_get_contents('php://input'), true);
 
 $countryName = $update['message']['text'];
+
+$emoji_map = json_encode(file_get_contents('map_data'), true);
+
 $wikiUrl = 'https://ru.wikipedia.org/wiki/' . $countryName;
 
 $page = file_get_contents($wikiUrl);
 
 if (strpos($page, "Государства")) {
-    $text = "Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
+    $text = $emoji_map[$countryName] . "\nВот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
 } else {
     $text = "Попробуйте ввести название страны :))";
 }
