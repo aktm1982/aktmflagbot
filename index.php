@@ -10,7 +10,7 @@ $wikiUrl = 'https://ru.wikipedia.org/wiki/' . $countryName;
 
 $params = [
     'chat_id' => $update['message']['chat']['id'],
-    'text' => "Ваша [ссылка]($wikiUrl) на Wiki"
+    'text' => "Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki"
 ];
 
 $response = BASE_URL . "/sendMessage?" . http_build_query($params);
