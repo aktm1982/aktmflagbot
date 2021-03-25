@@ -8,10 +8,18 @@ $update = json_decode(file_get_contents('php://input'), true);
 $countryName = $update['message']['text'];
 $wikiUrl = 'https://ru.wikipedia.org/wiki/' . $countryName;
 
+$page = file_get_contents($wikiUrl);
+
+if (strpos("государство", $page)) {
+    $text = "Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
+} else {
+    $text = "Попробуйте ввести название страны :))";
+}
+
 $params = [
     'parse_mode' => 'HTML',
     'chat_id' => $update['message']['chat']['id'],
-    'text' => "Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki"
+    'text' => $text
 ];
 
 $response = BASE_URL . "/sendMessage?" . http_build_query($params);
