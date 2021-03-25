@@ -5,9 +5,12 @@ const BASE_URL = 'https://api.telegram.org/bot' . TOKEN;
 
 $update = json_decode(file_get_contents('php://input'), true);
 
+$countryName = $update['message']['text'];
+$wikiUrl = 'https://ru.wikipedia.org/wiki/' . $countryName;
+
 $params = [
     'chat_id' => $update['message']['chat']['id'],
-    'text' => $update['message']['text']
+    'text' => "Ваша [ссылка]($wikiUrl) на Wiki"
 ];
 
 $response = BASE_URL . "/sendMessage?" . http_build_query($params);
