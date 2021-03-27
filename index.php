@@ -7,14 +7,14 @@ $update = json_decode(file_get_contents('php://input'), true);
 
 $countryName = $update['message']['text'];
 
-$emoji_map = json_encode(file_get_contents('map_data'), true);
+$wikiUrl = 'https://ru.wikipedia.org/wiki/' . urlencode($countryName);
 
-$wikiUrl = 'https://ru.wikipedia.org/wiki/' . $countryName;
+$flag_map = json_decode(file_get_contents('flag_mapping'), true);
 
-$page = file_get_contents($wikiUrl);
+$html = file_get_contents($wikiUrl);
 
-if (strpos($page, "Государства")) {
-    $text = $emoji_map[$countryName] . "\nВот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
+if (strpos($page, "государство")) {
+    $text = $flag_map[$countryName] . "<br><br>Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
 } else {
     $text = "Попробуйте ввести название страны :))";
 }
