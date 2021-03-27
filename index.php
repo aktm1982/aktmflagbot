@@ -12,7 +12,7 @@ $html = file_get_contents($wikiUrl, false, null, 0, 10000);
 $flag_map = json_decode(file_get_contents('flag_mapping'), true);
 
 if (strpos($html, "государство")) {
-    $text = $flag_map[$countryName] . "<br><br>Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
+    $text = $flag_map[$countryName];// . "<br><br>Вот ваша <a href=\"$wikiUrl\">ссылка</a> на Wiki";
 } else {
     $text = "Попробуйте ввести название страны :))";
 }
